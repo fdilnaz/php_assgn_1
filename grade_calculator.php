@@ -36,8 +36,7 @@
             echo "Sorry! You got F";
         }
     }
-
 ?>
 
-</body>
+</Dody>
 </html>
