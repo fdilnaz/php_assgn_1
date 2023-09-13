@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +17,13 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 </head>
+
 <body>
-<div class="container">
+    <div class="container">
         <div class="row">
             <div class="offset-3 col-md-6 mt-4">
-            <h1 class="text-center pb-4">Calculator</h1>
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                <h1 class="text-center pb-4">Calculator</h1>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="form-group">
                         <label for="number1">Enter a number </label>
                         <input class="form-control" type="number" id="number1" name="number1" required>
@@ -42,50 +44,61 @@
                     </div>
                     <input class="btn btn-info" type="submit" value="Calculate">
                 </form>
-                
+
             </div>
         </div>
     </div>
     <?php
 
-    function add($number1, $number2){
+    function add($number1, $number2)
+    {
         return $number1 + $number2;
     }
 
-    function sub($number1, $number2){
+    function sub($number1, $number2)
+    {
         return $number1 - $number2;
     }
 
-    function mul($number1, $number2){
+    function mul($number1, $number2)
+    {
         return $number1 * $number2;
     }
 
-    function div($number1, $number2){
-        return $number1 / $number2;
+    function div($number1, $number2)
+    {
+        if ($number2 != 0) {
+            return $number1 / $number2;
+        } else {
+            echo "<p class='text-center'>Division is not allowed using zero</p>";
+        }
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $number1 = $_POST["number1"];
         $number2 = $_POST["number2"];
-        $operation = $_POST ["operation"];
+        $operation = $_POST["operation"];
 
         $result = 0;
 
-        if($operation == "add"){
+        if ($operation == "add") {
             $result = add($number1, $number2);
-            echo "<p class='text-center'>Result: {$number1} + {$number2} = " .$result . "</p>";
-        }else if($operation == "sub"){
+            echo "<p class='text-center'>Result: {$number1} + {$number2} = " . $result . "</p>";
+        } else if ($operation == "sub") {
             $result = sub($number1, $number2);
-            echo "<p class='text-center'>Result: {$number1} - {$number2} = " .$result . "</p>";
-        }else if($operation == "mul"){
+            echo "<p class='text-center'>Result: {$number1} - {$number2} = " . $result . "</p>";
+        } else if ($operation == "mul") {
             $result = mul($number1, $number2);
-            echo "<p class='text-center'>Result: {$number1} * {$number2} = " .$result . "</p>";
-        }else if($operation == "div"){
+            echo "<p class='text-center'>Result: {$number1} * {$number2} = " . $result . "</p>";
+        } else if ($operation == "div") {
             $result = div($number1, $number2);
-            echo "<p class='text-center'>Result: {$number1} / {$number2} = " .$result . "</p>";
-        }       
+            if ($number2 != 0) {
+                echo "<p class='text-center'>Result: {$number1} / {$number2} = " . $result . "</p>";
+            }
+        }
 
     }
     ?>
 </body>
+
 </html>
